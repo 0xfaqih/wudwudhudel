@@ -1,35 +1,35 @@
-import fs from "fs";
-import path from "path";
-import dotenv from "dotenv";
-import { fileURLToPath } from "url";
+import fs from 'fs';
+import path from 'path';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export const config = (() => {
-  let loadedCookies = [];
+function loadCookies() {
   try {
-    const cookieFilePath = path.resolve(__dirname, "../cookie.json");
-    const cookieData = fs.readFileSync(cookieFilePath, "utf8");
-    loadedCookies = JSON.parse(cookieData);
-    console.log("Cookie berhasil dimuat dari cookie.json");
+    const cookieFilePath = path.resolve(__dirname, '../cookie.json');
+    const cookieData = fs.readFileSync(cookieFilePath, 'utf8');
+    return JSON.parse(cookieData);
   } catch (error) {
     console.warn(
       `Gagal memuat cookie dari cookie.json: ${error.message}. Menggunakan array cookie kosong.`
     );
+    return [];
   }
+}
 
-  return {
-    accountName: 'Bot Meeting',
-    telegramBotToken: process.env.TELEGRAM_TOKEN,
-    telegramChatId: process.env.CHAT_ID,
-
-    meetingUrlTemplate: "https://huddle01.app/room/{roomId}",
-    roomIds: ["ofs-qmul-efc", "gvd-azxf-lrq"],
-
-    cookies: loadedCookies,
-    checkIntervalMinutes: 1,
-  };
-})();
+export const config = {
+  accountName: "Bot Meeting 1",
+  telegramBotToken: process.env.TELEGRAM_TOKEN,
+  telegramChatId: process.env.CHAT_ID,
+  meetingUrlTemplate: "https://huddle01.app/room/{roomId}",
+  roomIds: [ "gtz-jhcp-odn", "gvd-azxf-lrq", "xny-sxek-fdj" ],
+  cookies: loadCookies(),
+  checkIntervalMinutes: 30,
+  web3ApiBaseUrl: "https://testnet.huddle01.com",
+  web3RpcUrl: "https://huddle-testnet.rpc.caldera.xyz/http",
+  web3PrivateKey: process.env.WEB3_PRIVATE_KEY || null,
+};
