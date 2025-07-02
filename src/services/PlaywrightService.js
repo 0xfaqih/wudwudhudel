@@ -6,7 +6,7 @@ export class PlaywrightService {
 
     async launchBrowser() {
         if (this.browser) return;
-        this.browser = await chromium.launch({ headless: false });
+        this.browser = await chromium.launch({ headless: true });
     }
 
     async openNewPage() {
