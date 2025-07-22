@@ -26,7 +26,7 @@ export const config = {
   telegramBotToken: process.env.TELEGRAM_TOKEN,
   telegramChatId: process.env.CHAT_ID,
   meetingUrlTemplate: "https://huddle01.app/room/{roomId}",
-  roomIds: [ "uii-cuen-obp", "gtz-jhcp-odn", "gvd-azxf-lrq", "xny-sxek-fdj"],
+  roomIds: [ "vxz-zklp-hmf", "iqr-oxzx-yxl"],
   cookies: loadCookies(),
   checkIntervalMinutes: 30,
   web3ApiBaseUrl: "https://testnet.huddle01.com",

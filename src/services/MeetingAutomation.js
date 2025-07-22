@@ -199,10 +199,10 @@ export class MeetingAutomation {
     }
 
     try {
-      const inMeetingIndicatorSelector = 'span[aria-label="peersCount"]';
+      const inMeetingIndicatorSelector = 'button[aria-label="endCall"]';
       const inMeetingElement = await this.playwrightService
         .getPage()
-        .locator(inMeetingIndicatorSelector);
+        .locator(inMeetingIndicatorSelector).first();
 
       const isInMeeting = await inMeetingElement.isVisible();
 
