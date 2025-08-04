@@ -110,8 +110,7 @@ export class MeetingAutomation {
           .locator(inMeetingIndicatorSelector);
         const inSpaceElement = await this.playwrightService
           .getPage()
-          .locator(inSPaceIndicator)
-          .filter({ hasText: "Leave the spaces" });
+          .locator(inSPaceIndicator);
 
         await this.playwrightService.waitForTimeout(20000);
 
@@ -157,21 +156,21 @@ export class MeetingAutomation {
         .locator(isHostMeetingSelector);
       const isHostMeetingVisible = await isHostMeeting.isVisible();
 
-      if (isHostMeetingVisible) {
-        console.log("you are host");
-        await isHostMeeting.click();
+      // if (isHostMeetingVisible) {
+      //   console.log("you are host");
+      //   await isHostMeeting.click();
 
-        const isHasUnlockedMeeting = await this.playwrightService
-          .getPage()
-          .locator(isHasUnlockedMeetingSelector);
-        const isHasUnlockedMeetingVisible = await isHasUnlockedMeeting.isVisible();
+      //   const isHasUnlockedMeeting = await this.playwrightService
+      //     .getPage()
+      //     .locator(isHasUnlockedMeetingSelector);
+      //   const isHasUnlockedMeetingVisible = await isHasUnlockedMeeting.isVisible();
 
-        if (isHasUnlockedMeetingVisible) {
-          console.log("meeting unlock successfully");
-        }
-      } else {
-        console.log("you are not host");
-      }
+      //   if (isHasUnlockedMeetingVisible) {
+      //     console.log("meeting unlock successfully");
+      //   }
+      // } else {
+      //   console.log("you are not host");
+      // }
     }
   }
 
@@ -199,7 +198,7 @@ export class MeetingAutomation {
     }
 
     try {
-      const inMeetingIndicatorSelector = 'button[aria-label="endCall"]';
+      const inMeetingIndicatorSelector = 'button[aria-label="leave"]';
       const inMeetingElement = await this.playwrightService
         .getPage()
         .locator(inMeetingIndicatorSelector).first();
