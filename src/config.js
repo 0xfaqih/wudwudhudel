@@ -28,7 +28,7 @@ export const config = {
   meetingUrlTemplate: "https://huddle01.app/room/{roomId}",
   roomIds: [ "fgg-oioe-cdp", "iqr-oxzx-yxl"],
   cookies: loadCookies(),
-  checkIntervalMinutes: 1,
+  checkIntervalMinutes: 40,
   web3ApiBaseUrl: "https://testnet.huddle01.com",
   web3RpcUrl: "https://huddle-testnet.rpc.caldera.xyz/http",
   web3PrivateKey: process.env.WEB3_PRIVATE_KEY || null,
