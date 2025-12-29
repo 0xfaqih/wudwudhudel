@@ -10,6 +10,7 @@ export class MeetingAutomation {
   roomIds;
   cookies;
   checkIntervalMinutes;
+  accountName;
   isJoined = false;
   checkIntervalId = null;
   _lastQuestClaimTime = null;
@@ -39,6 +40,7 @@ export class MeetingAutomation {
     this.roomIds = roomIds;
     this.cookies = cookies;
     this.checkIntervalMinutes = checkIntervalMinutes;
+    this.accountName = accountName;
     this.web3Service = new Web3Service(
       web3ApiBaseUrl,
       web3RpcUrl,
@@ -88,6 +90,17 @@ export class MeetingAutomation {
       try {
         await this.playwrightService.navigateTo(meetingUrl);
         await this.playwrightService.waitForTimeout(10000);
+
+        const nameInputSelector = 'input[aria-label="enter-name"]';
+        const nameInput = await this.playwrightService
+          .getPage()
+          .locator(nameInputSelector);
+
+        if (await nameInput.isVisible()) {
+          console.log("Input nama ditemukan, mengisi nama...");
+          await nameInput.fill(this.accountName || "User");
+          await this.playwrightService.waitForTimeout(1000);
+        }
 
         const joinButtonSelector = "button#join-button";
         const joinButton = await this.playwrightService

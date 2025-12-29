@@ -22,7 +22,7 @@ function loadCookies() {
 }
 
 export const config = {
-  accountName: "Bot Meeting 1",
+  accountName: process.env.ACCOUNT_NAME,
   telegramBotToken: process.env.TELEGRAM_TOKEN,
   telegramChatId: process.env.CHAT_ID,
   meetingUrlTemplate: "https://huddle01.app/room/{roomId}",
